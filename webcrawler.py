@@ -1,6 +1,7 @@
 import bs4
 import requests
 import re
+from tqdm import tqdm
 
 
 def scrape_links(from_url, depth, urls = {}):
@@ -22,7 +23,7 @@ def scrape_links(from_url, depth, urls = {}):
             urls[from_url] = [link.get('href') for link in soup.find_all('a', attrs={'href': re.compile("^http.*(?<!.vsix)$")})]
 
             ## Start recursion             
-            for url in urls[from_url]:
+            for url in tqdm(urls[from_url]):
                 # Check if the url already has been scraped
                 if url not in urls.keys(): 
                     urls = scrape_links(url, depth-1, urls)
