@@ -8,7 +8,10 @@ To run `python main.py <url> <depth>`
 """
 
 START_URL = sys.argv[1]
-DEPTH = int(sys.argv[2])
+if len(sys.argv) > 2:
+    DEPTH = int(sys.argv[2])
+else: 
+    DEPTH = 0
 FILE_NAME = "links.py"
 
 if __name__ == '__main__':
